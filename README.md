@@ -49,7 +49,8 @@ go get -u github.com/8398a7/gen-lgtm
 
 ## Quick Start
 
-You can run it through Docker.
+You can run it through Docker.  
+refs: https://hub.docker.com/repository/docker/8398a7/gen-lgtm
 
 ```bash
 $ docker run -v $(pwd)/tmp:/tmp 8398a7/gen-lgtm -s /tmp/sample3.gif -d /tmp/dist.gif
