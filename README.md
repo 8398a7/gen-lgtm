@@ -10,7 +10,15 @@ Convert your favorite images to LGTM images.
 
 ## Install
 
-TBD
+You can download the binaries from the [release page](https://github.com/8398a7/gen-lgtm/releases).
+
+or
+
+go get
+
+```bash
+go get -u github.com/8398a7/gen-lgtm
+```
 
 ## Quick Start
 
