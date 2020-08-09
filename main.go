@@ -11,33 +11,33 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	src, dist string
+	loop      int
+)
+
+var rootCmd = &cobra.Command{
+	Use:   "gen-lgtm",
+	Short: "Generate LGTM gif",
+	Long:  "Generate LGTM gif (source: https://github.com/8398a7/gen-lgtm)",
+	PreRun: func(cmd *cobra.Command, args []string) {
+		if src == "" {
+			fatal(cmd.Help())
+			os.Exit(0)
+		}
+	},
+	Run: func(cmd *cobra.Command, args []string) {
+		srcGif, lgtm, err := prepare(src)
+		fatal(err)
+
+		distGif, err := Gen(srcGif, lgtm, loop)
+		fatal(err)
+
+		fatal(write(dist, distGif))
+	},
+}
+
 func main() {
-	var (
-		src, dist string
-		loop      int
-	)
-
-	rootCmd := &cobra.Command{
-		Use:   "gen-lgtm",
-		Short: "Generate LGTM gif",
-		Long:  "Generate LGTM gif (source: https://github.com/8398a7/gen-lgtm)",
-		PreRun: func(cmd *cobra.Command, args []string) {
-			if src == "" {
-				fatal(cmd.Help())
-				os.Exit(0)
-			}
-		},
-		Run: func(cmd *cobra.Command, args []string) {
-			srcGif, lgtm, err := prepare(src)
-			fatal(err)
-
-			distGif, err := Gen(srcGif, lgtm, loop)
-			fatal(err)
-
-			fatal(write(dist, distGif))
-		},
-	}
-
 	rootCmd.Flags().StringVarP(&src, "src", "s", "", "Source image path.")
 	rootCmd.Flags().StringVarP(&dist, "dist", "d", "dist.gif", "Distribution image path.")
 	rootCmd.Flags().IntVarP(&loop, "loop", "l", -1, "Number of loops in the gif image. If 0 is specified, it is an infinite loop.")
