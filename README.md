@@ -8,6 +8,15 @@ Convert your favorite images to LGTM images.
 
 TBD
 
+## Quick Start
+
+You can run it through Docker.
+
+```bash
+$ docker run -v $(pwd)/tmp:/tmp 8398a7/gen-lgtm -s /tmp/sample3.gif -d /tmp/dist.gif
+$ open tmp/dist.gif
+```
+
 ## Usage
 
 ```bash
