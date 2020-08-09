@@ -13,16 +13,16 @@ builds:
       - arm64
     ldflags:
       - -s -w
-      - -X main.version={{.Version}}
-      - -X main.commit={{.Commit}}
-      - -X main.date={{.Date}}
-      - -X main.goversion={{.Env.GOVERSION}}
+      - -X main.version={{ .Version }}
+      - -X main.commit={{ .Commit }}
+      - -X main.date={{ .Date }}
+      - -X main.goversion={{ .Env.GOVERSION }}
 archives:
   - name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
 dockers:
   - image_templates:
       - "8398a7/gen-lgtm:latest"
-      - "8398a7/gen-lgtm:{{.Tag}}"
+      - "8398a7/gen-lgtm:{{ .Tag }}"
 checksum:
   name_template: "checksums.txt"
 snapshot:
