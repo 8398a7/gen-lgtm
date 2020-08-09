@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"time"
 
 	"github.com/spf13/cobra"
 )
@@ -11,7 +10,7 @@ import (
 var (
 	version   = "master"
 	commit    = "master"
-	date      = time.Now().String()
+	date      = "none"
 	goversion = "-"
 )
 
