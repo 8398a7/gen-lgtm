@@ -21,6 +21,9 @@ archives:
       windows: Windows
       386: i386
       amd64: x86_64
+dockers:
+  - image_templates:
+      - "8398a7/gen-lgtm:{{.Tag}}"
 checksum:
   name_template: "checksums.txt"
 snapshot:

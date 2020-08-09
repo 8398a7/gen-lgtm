@@ -17,6 +17,10 @@ jobs:
           go-version: 1.14.7
       - name: Set GOVERSION env
         run: echo "::set-env name=GOVERSION::$(go version | cut -d' ' -f3)"
+      - name: Docker login
+        run: echo $DOCKERHUB_TOKEN | docker login --username 8398a7 --password-stdin
+        env:
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
