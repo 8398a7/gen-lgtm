@@ -1,5 +1,9 @@
 # gen-lgtm
 
+![](https://github.com/8398a7/gen-lgtm/workflows/release/badge.svg)
+![](https://img.shields.io/github/license/8398a7/gen-lgtm?color=brightgreen)
+![](https://img.shields.io/github/v/release/8398a7/gen-lgtm?color=brightgreen)
+
 Convert your favorite images to LGTM images.
 
 ![](https://user-images.githubusercontent.com/8043276/89729643-a229d980-da72-11ea-9264-5c537cd64826.gif)
