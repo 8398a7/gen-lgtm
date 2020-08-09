@@ -15,7 +15,8 @@ builds:
       - -X main.date={{.Date}}
       - -X main.goversion={{.Env.GOVERSION}}
 archives:
-  - replacements:
+  - name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+    replacements:
       darwin: Darwin
       linux: Linux
       windows: Windows

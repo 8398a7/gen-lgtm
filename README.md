@@ -10,7 +10,21 @@ Convert your favorite images to LGTM images.
 
 ## Install
 
-You can download the binaries from the [release page](https://github.com/8398a7/gen-lgtm/releases).
+macOS
+
+```bash
+curl -sLo gen-lgtm.tar.gz https://github.com/8398a7/gen-lgtm/releases/latest/download/gen-lgtm_Darwin_x86_64.tar.gz
+tar -zxvf gen-lgtm.tar.gz
+mv gen-lgtm /usr/local/bin
+```
+
+Linux (x86_64)
+
+```bash
+curl -sLo gen-lgtm.tar.gz https://github.com/8398a7/gen-lgtm/releases/latest/download/gen-lgtm_Linux_x86_64.tar.gz
+tar -zxvf gen-lgtm.tar.gz
+mv gen-lgtm /usr/local/bin
+```
 
 or
 
