@@ -13,30 +13,38 @@ Generate LGTM gif (source: https://github.com/8398a7/gen-lgtm)
 
 Usage:
   gen-lgtm [flags]
+  gen-lgtm [command]
+
+Available Commands:
+  help        Help about any command
+  version     Print version information
 
 Flags:
-  -d, --dist string   Distribution image path. (default "dist.gif")
-  -h, --help          help for gen-lgtm
-  -l, --loop int      Number of loops in the gif image. If 0 is specified, it is an infinite loop. (default -1)
-  -s, --src string    Source image path.
+  -d, --dist string    Distribution image path (default "dist.gif")
+  -h, --help           help for gen-lgtm
+  -i, --image string   Overwrite the LGTM image
+  -l, --loop int       Number of loops in the gif image. If 0 is specified, it is an infinite loop (default -1)
+  -s, --src string     Source image path
+
+Use "gen-lgtm [command] --help" for more information about a command.
 ```
 
 ## Install
 
-macOS
+macOS (x86_64)
 
 ```bash
-curl -sLo gen-lgtm.tar.gz https://github.com/8398a7/gen-lgtm/releases/latest/download/gen-lgtm_Darwin_x86_64.tar.gz
-tar -zxvf gen-lgtm.tar.gz
-mv gen-lgtm /usr/local/bin
+$ curl -sLo gen-lgtm.tar.gz https://github.com/8398a7/gen-lgtm/releases/latest/download/gen-lgtm_Darwin_x86_64.tar.gz
+$ tar -zxvf gen-lgtm.tar.gz
+$ mv gen-lgtm /usr/local/bin
 ```
 
 Linux (x86_64)
 
 ```bash
-curl -sLo gen-lgtm.tar.gz https://github.com/8398a7/gen-lgtm/releases/latest/download/gen-lgtm_Linux_x86_64.tar.gz
-tar -zxvf gen-lgtm.tar.gz
-mv gen-lgtm /usr/local/bin
+$ curl -sLo gen-lgtm.tar.gz https://github.com/8398a7/gen-lgtm/releases/latest/download/gen-lgtm_Linux_x86_64.tar.gz
+$ tar -zxvf gen-lgtm.tar.gz
+$ mv gen-lgtm /usr/local/bin
 ```
 
 or
