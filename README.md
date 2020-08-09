@@ -32,28 +32,17 @@ Use "gen-lgtm [command] --help" for more information about a command.
 
 ## Install
 
-macOS (x86_64)
+### brew or linuxbrew
 
 ```bash
-$ curl -sLo gen-lgtm.tar.gz https://github.com/8398a7/gen-lgtm/releases/latest/download/gen-lgtm_Darwin_x86_64.tar.gz
-$ tar -zxvf gen-lgtm.tar.gz
-$ mv gen-lgtm /usr/local/bin
+$ brew tap 8398a7/gen-lgtm
+$ brew install gen-lgtm
 ```
 
-Linux (x86_64)
+### go get
 
 ```bash
-$ curl -sLo gen-lgtm.tar.gz https://github.com/8398a7/gen-lgtm/releases/latest/download/gen-lgtm_Linux_x86_64.tar.gz
-$ tar -zxvf gen-lgtm.tar.gz
-$ mv gen-lgtm /usr/local/bin
-```
-
-or
-
-go get
-
-```bash
-go get -u github.com/8398a7/gen-lgtm
+$ go get -u github.com/8398a7/gen-lgtm
 ```
 
 ## Quick Start
