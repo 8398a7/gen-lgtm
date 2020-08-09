@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"image"
 	"image/gif"
-	"io"
 	"log"
 	"os"
 
@@ -27,10 +26,11 @@ var rootCmd = &cobra.Command{
 		}
 	},
 	Run: func(cmd *cobra.Command, args []string) {
-		srcGif, lgtm, err := prepare(src)
+		srcFile, lgtm, err := prepare(src)
 		fatal(err)
+		defer srcFile.Close()
 
-		distGif, err := Gen(srcGif, lgtm, loop)
+		distGif, err := Gen(srcFile, lgtm, loop)
 		fatal(err)
 
 		fatal(write(dist, distGif))
@@ -59,7 +59,7 @@ func write(dist string, distGif *gif.GIF) error {
 	return nil
 }
 
-func prepare(src string) (io.Reader, image.Image, error) {
+func prepare(src string) (*os.File, image.Image, error) {
 	f, err := os.Open(src)
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to open: %w", err)
