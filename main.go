@@ -11,8 +11,8 @@ import (
 )
 
 var (
-	src, dist string
-	loop      int
+	src, dist, img string
+	loop           int
 )
 
 var rootCmd = &cobra.Command{
@@ -26,7 +26,7 @@ var rootCmd = &cobra.Command{
 		}
 	},
 	Run: func(cmd *cobra.Command, args []string) {
-		srcFile, lgtm, err := prepare(src)
+		srcFile, lgtm, err := prepare(src, img)
 		fatal(err)
 		defer srcFile.Close()
 
@@ -41,6 +41,7 @@ func main() {
 	rootCmd.Flags().StringVarP(&src, "src", "s", "", "Source image path")
 	rootCmd.Flags().StringVarP(&dist, "dist", "d", "dist.gif", "Distribution image path")
 	rootCmd.Flags().IntVarP(&loop, "loop", "l", -1, "Number of loops in the gif image. If 0 is specified, it is an infinite loop")
+	rootCmd.Flags().StringVarP(&img, "image", "i", "", "Overwrite the LGTM image")
 
 	fatal(rootCmd.Execute())
 }
@@ -59,13 +60,13 @@ func write(dist string, distGif *gif.GIF) error {
 	return nil
 }
 
-func prepare(src string) (*os.File, image.Image, error) {
+func prepare(src, img string) (*os.File, image.Image, error) {
 	f, err := os.Open(src)
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to open: %w", err)
 	}
 
-	lgtm, err := readLGTM()
+	lgtm, err := readLGTM(img)
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to read lgtm image: %w", err)
 	}

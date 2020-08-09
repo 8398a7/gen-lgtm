@@ -7,6 +7,7 @@ import (
 	"image/gif"
 	"image/png"
 	"io"
+	"os"
 )
 
 func Gen(src io.Reader, lgtm image.Image, loop int) (*gif.GIF, error) {
@@ -52,16 +53,27 @@ func composite(src *gif.GIF, lgtm image.Image, loop int) (*gif.GIF, error) {
 	return dist, nil
 }
 
-func readLGTM() (image.Image, error) {
-	f, err := Assets.Open("/assets/lgtm.png")
-	if err != nil {
-		return nil, fmt.Errorf("failed to open assets: %w", err)
+func readLGTM(img string) (image.Image, error) {
+	var r io.Reader
+	if img != "" {
+		f, err := os.Open(img)
+		if err != nil {
+			return nil, fmt.Errorf("failed to open: %w", err)
+		}
+		defer f.Close()
+		r = f
+	} else {
+		f, err := Assets.Open("/assets/lgtm.png")
+		if err != nil {
+			return nil, fmt.Errorf("failed to open assets: %w", err)
+		}
+		defer f.Close()
+		r = f
 	}
-	defer f.Close()
 
-	img, err := png.Decode(f)
+	out, err := png.Decode(r)
 	if err != nil {
 		return nil, fmt.Errorf("failed to decode to png: %w", err)
 	}
-	return img, nil
+	return out, nil
 }
