@@ -20,7 +20,8 @@ Available Commands:
   version     Print version information
 
 Flags:
-  -d, --dist string    Distribution image path (default "dist.gif")
+  -r, --dir string     Converts gif images in a specified folder. The image name is "original-image-dist.gif"
+  -d, --dist string    Distribution image path
   -h, --help           help for gen-lgtm
   -i, --image string   Overwrite the LGTM image
   -l, --loop int       Number of loops in the gif image. If 0 is specified, it is an infinite loop (default -1)
@@ -61,14 +62,14 @@ You can run it through Docker.
 refs: https://hub.docker.com/repository/docker/8398a7/gen-lgtm
 
 ```bash
-$ docker run -v $(pwd)/tmp:/tmp 8398a7/gen-lgtm -s /tmp/sample3.gif -d /tmp/dist.gif
-$ open tmp/dist.gif
+$ docker run -v $(pwd)/tmp:/tmp 8398a7/gen-lgtm -s /tmp/src.gif
+$ open tmp/src-dist.gif
 ```
 
 ## Usage
 
 ```bash
-$ gen-lgtm --src src.gif --dist dist.gif --loop 5
+$ gen-lgtm --src src.gif --dist dist.gif --loop 5 --image other_lgtm.png
 ```
 
 If 0 is set to `loop`, this creates an infinite loop.  
