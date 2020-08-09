@@ -15,6 +15,8 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.14.7
+      - name: Set GOVERSION env
+        run: echo "::set-env name=GOVERSION::$(go version | cut -d' ' -f3)"
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
