@@ -21,6 +21,12 @@ jobs:
         run: echo $DOCKERHUB_TOKEN | docker login --username 8398a7 --password-stdin
         env:
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+      - uses: actions/cache@v2
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:

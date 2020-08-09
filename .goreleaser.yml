@@ -36,3 +36,16 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
+brews:
+  - tap:
+      owner: 8398a7
+      name: homebrew-gen-lgtm
+      token: "{{ .Env.GITHUB_TOKEN }}"
+    url_template: "http://github.com/8398a7/gen-lgtm/releases/download/{{ .Tag }}/{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}.tar.gz"
+    commit_author:
+      name: 8398a7
+      email: 8398a7@gmail.com
+    homepage: https://github.com/8398a7/gen-lgtm
+    description: Convert your favorite images to LGTM images.
+    install: |
+      bin.install "gen-lgtm"
