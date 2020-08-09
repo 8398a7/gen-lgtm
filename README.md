@@ -8,6 +8,19 @@ Convert your favorite images to LGTM images.
 
 ![](https://user-images.githubusercontent.com/8043276/89729643-a229d980-da72-11ea-9264-5c537cd64826.gif)
 
+```
+Generate LGTM gif (source: https://github.com/8398a7/gen-lgtm)
+
+Usage:
+  gen-lgtm [flags]
+
+Flags:
+  -d, --dist string   Distribution image path. (default "dist.gif")
+  -h, --help          help for gen-lgtm
+  -l, --loop int      Number of loops in the gif image. If 0 is specified, it is an infinite loop. (default -1)
+  -s, --src string    Source image path.
+```
+
 ## Install
 
 macOS
