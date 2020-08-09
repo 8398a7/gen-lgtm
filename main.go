@@ -38,9 +38,9 @@ var rootCmd = &cobra.Command{
 }
 
 func main() {
-	rootCmd.Flags().StringVarP(&src, "src", "s", "", "Source image path.")
-	rootCmd.Flags().StringVarP(&dist, "dist", "d", "dist.gif", "Distribution image path.")
-	rootCmd.Flags().IntVarP(&loop, "loop", "l", -1, "Number of loops in the gif image. If 0 is specified, it is an infinite loop.")
+	rootCmd.Flags().StringVarP(&src, "src", "s", "", "Source image path")
+	rootCmd.Flags().StringVarP(&dist, "dist", "d", "dist.gif", "Distribution image path")
+	rootCmd.Flags().IntVarP(&loop, "loop", "l", -1, "Number of loops in the gif image. If 0 is specified, it is an infinite loop")
 
 	fatal(rootCmd.Execute())
 }
