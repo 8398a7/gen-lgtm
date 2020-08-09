@@ -6,13 +6,15 @@ import (
 	"image/gif"
 	"log"
 	"os"
+	"path/filepath"
+	"strings"
 
 	"github.com/spf13/cobra"
 )
 
 var (
-	src, dist, img string
-	loop           int
+	src, dist, img, dir string
+	loop                int
 )
 
 var rootCmd = &cobra.Command{
@@ -20,28 +22,56 @@ var rootCmd = &cobra.Command{
 	Short: "Generate LGTM gif",
 	Long:  "Generate LGTM gif (source: https://github.com/8398a7/gen-lgtm)",
 	PreRun: func(cmd *cobra.Command, args []string) {
-		if src == "" {
+		if src == "" && dir == "" {
 			fatal(cmd.Help())
 			os.Exit(0)
 		}
+		if dir != "" {
+			dist = ""
+		}
+		if dir != "" && src != "" {
+			fmt.Println("If dir is specified, src cannot be specified.")
+			os.Exit(1)
+		}
 	},
 	Run: func(cmd *cobra.Command, args []string) {
-		srcFile, lgtm, err := prepare(src, img)
-		fatal(err)
-		defer srcFile.Close()
+		var (
+			err  error
+			srcs []string
+		)
+		if dir != "" {
+			srcs, err = filepath.Glob(filepath.Join(dir, "*.gif"))
+			fatal(err)
+		} else {
+			srcs = []string{src}
+		}
 
-		distGif, err := Gen(srcFile, lgtm, loop)
-		fatal(err)
+		fn := func(src, dist string) {
+			srcFile, lgtm, err := prepare(src, img)
+			fatal(err)
+			defer srcFile.Close()
 
-		fatal(write(dist, distGif))
+			distGif, err := Gen(srcFile, lgtm, loop)
+			fatal(err)
+
+			fatal(write(dist, distGif))
+		}
+
+		for _, src := range srcs {
+			if dist == "" {
+				dist = strings.ReplaceAll(src, ".gif", "-dist.gif")
+			}
+			fn(src, dist)
+		}
 	},
 }
 
 func main() {
 	rootCmd.Flags().StringVarP(&src, "src", "s", "", "Source image path")
-	rootCmd.Flags().StringVarP(&dist, "dist", "d", "dist.gif", "Distribution image path")
+	rootCmd.Flags().StringVarP(&dist, "dist", "d", "", "Distribution image path")
 	rootCmd.Flags().IntVarP(&loop, "loop", "l", -1, "Number of loops in the gif image. If 0 is specified, it is an infinite loop")
 	rootCmd.Flags().StringVarP(&img, "image", "i", "", "Overwrite the LGTM image")
+	rootCmd.Flags().StringVarP(&dir, "dir", "r", "", "Converts gif images in a specified folder. The image name is \"original-image-dist.gif\"")
 
 	fatal(rootCmd.Execute())
 }
