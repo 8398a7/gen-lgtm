@@ -3,11 +3,17 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 
 	"github.com/spf13/cobra"
 )
 
-var version, commit, date, goversion string
+var (
+	version   = "master"
+	commit    = "master"
+	date      = time.Now().String()
+	goversion = "-"
+)
 
 func init() {
 	versionCmd := &cobra.Command{
